@@ -10,7 +10,7 @@ export class FlightFareService {
   airports: AirportDetail[] = [];
 
   constructor(private http: Http) {
-    console.debug('Flight service constructor called!');
+    console.debug('Flight fare service constructor called!');
   }
 
   allAirports(): Array<AirportDetail> {

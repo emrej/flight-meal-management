@@ -15,7 +15,7 @@ export class FlightSearchComponent {
   filterToggleTo: boolean;
 
   constructor(private flightService: FlightFareService) {
-    console.debug('Flight search constructor called!');
+    console.debug('Flight fare search constructor called!');
     this.retrieveAirports();
   }
 
