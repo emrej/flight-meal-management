@@ -38,6 +38,7 @@ export class FlightFareService {
 
   findFare(from: string, to: string): void {
     this.spinnerService.show();
+    this.flightFare = undefined;
 
     let headers = new Headers();
     headers.set('Accept', 'application/json');
