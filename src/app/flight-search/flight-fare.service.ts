@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {FlightFare} from '../entities/flight-fare';
 import {Http, URLSearchParams, Headers} from '@angular/http';
 import {AirportDetail} from "../entities/airport-detail";
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Injectable()
 export class FlightFareService {
@@ -9,7 +10,7 @@ export class FlightFareService {
   flightFare: FlightFare;
   airports: AirportDetail[] = [];
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private spinnerService: Ng4LoadingSpinnerService) {
     console.debug('Flight fare service constructor called!');
   }
 
@@ -36,6 +37,8 @@ export class FlightFareService {
   }
 
   findFare(from: string, to: string): void {
+    this.spinnerService.show();
+
     let headers = new Headers();
     headers.set('Accept', 'application/json');
 
@@ -48,9 +51,11 @@ export class FlightFareService {
       .subscribe(
         flightFare => {
           this.flightFare = flightFare;
+          this.spinnerService.hide();
         },
         err => {
           console.error('Error when loading', err);
+          this.spinnerService.hide();
         }
       );
 

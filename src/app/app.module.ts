@@ -11,13 +11,15 @@ import { FlightSearchComponent } from './flight-search/flight-search.component';
 import { FlightFareService } from './flight-search/flight-fare.service';
 import { FlightCardComponent } from './flight-search/flight-card.component';
 import { FilterPipe } from './flight-search/filter.pipe';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(APP_ROUTES)
+    RouterModule.forRoot(APP_ROUTES),
+    Ng4LoadingSpinnerModule
   ],
   declarations: [
     AppComponent,
