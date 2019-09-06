@@ -24,21 +24,16 @@ export class FlightSearchComponent {
   }
 
   search(): void {
-
     this.flightService.findFare(this.from, this.to);
-
   }
 
   retrieveAirports(): void {
-
+    this.flightService.reset();
     this.flightService.allAirports();
-
   }
 
   get airports(): Array<AirportDetail> {
-
     return this.flightService.airports;
-
   }
 
   fillTexBox(airport: AirportDetail, event: MouseEvent) {

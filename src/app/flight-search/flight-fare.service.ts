@@ -12,6 +12,12 @@ export class FlightFareService {
 
   constructor(private http: Http, private spinnerService: Ng4LoadingSpinnerService) {
     console.debug('Flight fare service constructor called!');
+    this.reset();
+  }
+
+  reset() {
+    this.airports = [];
+    this.flightFare = undefined;
   }
 
   allAirports(): Array<AirportDetail> {
