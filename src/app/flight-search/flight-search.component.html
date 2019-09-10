@@ -1,64 +1,49 @@
 
 <div class="card row">
-<h1>Flight Fare Finder</h1>
+  <h1>Flight Fare Finder</h1>
 
-<div class="control-group">
-  <label>From:</label>
-  <input [(ngModel)]="from" (keyup)="searchInputKeyUp($event)" class="form-control" id="from">
-</div>
-<ul *ngIf="filterToggleFrom" class="list-group">
-  <li (click)="fillTexBox(airport, $event)" *ngFor="let airport of airports | filter : from" class="list-group-item" id="fromItem">
-    {{airport.code}} | {{airport.name}} | {{airport.description}}
-  </li>
-</ul>
+  <div class="control-group">
+    <label>From:</label>
+    <input [(ngModel)]="from" (keyup)="searchInputKeyUp($event)" class="form-control" id="from">
+  </div>
+  <ul *ngIf="filterToggleFrom" class="list-group">
+    <li (click)="fillTexBox(airport, $event)" *ngFor="let airport of airports | filter : from" class="list-group-item" id="fromItem">
+      {{airport.code}} | {{airport.name}} | {{airport.description}}
+    </li>
+  </ul>
 
-<span>
-  &nbsp;
-</span>
+  <span>
+    &nbsp;
+  </span>
 
-<div class="control-group">
-  <label>To:</label>
-  <input [(ngModel)]="to" (keyup)="searchInputKeyUp($event)" class="form-control" id="to">
-</div>
-<ul *ngIf="filterToggleTo" class="list-group">
-  <li (click)="fillTexBox(airport, $event)" *ngFor="let airport of airports | filter : to" class="list-group-item" id="toItem">
-    {{airport.code}} | {{airport.name}} | {{airport.description}}
-  </li>
-</ul>
+  <div class="control-group">
+    <label>To:</label>
+    <input [(ngModel)]="to" (keyup)="searchInputKeyUp($event)" class="form-control" id="to">
+  </div>
+  <ul *ngIf="filterToggleTo" class="list-group">
+    <li (click)="fillTexBox(airport, $event)" *ngFor="let airport of airports | filter : to" class="list-group-item" id="toItem">
+      {{airport.code}} | {{airport.name}} | {{airport.description}}
+    </li>
+  </ul>
 
-<span>
-  &nbsp;
-</span>
+  <span>
+    &nbsp;
+  </span>
 
-<div class="control-group">
-  <button
-    (click)="search()"
-    [disabled]="!from || !to"
-    class="btn btn-default">
-    Search
-  </button>
-</div>
+  <div class="control-group">
+    <button
+      (click)="search()"
+      [disabled]="!from || !to"
+      class="btn btn-default">
+      Search
+    </button>
+  </div>
 </div>
 
 <div class="row">
-<div *ngIf="flightFare" class="col col-lg-8 col-md-8 col-sm-6 col-xs-12">
-  <flight-card
-    [item]="flightFare">
-  </flight-card>
-  <!-- (selectedChange)="basket[f.id] = $event" -->
+  <div *ngIf="flightFare" class="col col-lg-8 col-md-8 col-sm-6 col-xs-12">
+    <flight-card
+      [item]="flightFare">
+    </flight-card>
+  </div>
 </div>
-</div>
-<!--
-<div class="card" *ngIf="flights.length > 0">
-<table class="table table-contensed">
-  <tr *ngFor="let f of flights" [ngClass]="{ 'active': f === selectedFlight }">
-    <td>{{f.id}}</td>
-    <td>{{f.date | date:'dd.MM.yyyy HH:mm'}}</td>
-    <td>{{f.from}}</td>
-    <td>{{f.to}}</td>
-    <td><a (click)="select(f)">Select</a></td>
-  </tr>
-</table>
-</div>
--->
-
