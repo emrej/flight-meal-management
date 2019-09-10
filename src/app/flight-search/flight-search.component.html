@@ -41,12 +41,12 @@
 </div>
 
 <div class="row">
-  <div *ngIf="flightFare" class="col col-lg-8 col-md-8 col-sm-6 col-xs-12">
+  <div *ngIf="flightFare" class="col col-lg-12 col-md-12 col-sm-6 col-xs-12">
     <flight-card
       [item]="flightFare">
     </flight-card>
   </div>
-  <div *ngIf="errorMessage" class="col col-lg-8 col-md-8 col-sm-6 col-xs-12">
+  <div *ngIf="errorMessage" class="col col-lg-12 col-md-12 col-sm-6 col-xs-12">
     <error-card
       [item]="errorMessage">
     </error-card>
