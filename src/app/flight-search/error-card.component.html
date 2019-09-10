@@ -1,0 +1,8 @@
+<div style="padding:20px;"
+     class="card"
+     [ngStyle]="{'background-color': 'lightyellow'}">
+
+  <h3>{{item.title}}</h3>
+  <p>{{(item.status >= 400 && item.status <= 404) ? 'Airport could not be found' : 'Something went wrong, please try again'}}</p>
+
+</div>

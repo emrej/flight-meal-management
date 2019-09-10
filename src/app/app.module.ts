@@ -9,6 +9,7 @@ import { APP_ROUTES } from "app/app.routes";
 import { FlightSearchComponent } from './flight-search/flight-search.component';
 import { FlightFareService } from './flight-search/flight-fare.service';
 import { FlightCardComponent } from './flight-search/flight-card.component';
+import { ErrorCardComponent } from './flight-search/error-card.component';
 import { FilterPipe } from './flight-search/filter.pipe';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
@@ -25,6 +26,7 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
     AboutComponent,
     FlightSearchComponent,
     FlightCardComponent,
+    ErrorCardComponent,
     FilterPipe
   ],
   providers: [

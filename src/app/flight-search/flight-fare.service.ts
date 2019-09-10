@@ -2,13 +2,15 @@ import {Injectable} from '@angular/core';
 import {FlightFare} from '../entities/flight-fare';
 import {Http, URLSearchParams, Headers} from '@angular/http';
 import {AirportDetail} from "../entities/airport-detail";
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import {Ng4LoadingSpinnerService} from 'ng4-loading-spinner';
+import {ErrorMessage} from "../entities/error-message";
 
 @Injectable()
 export class FlightFareService {
 
   flightFare: FlightFare;
   airports: AirportDetail[] = [];
+  errorMessage: ErrorMessage;
 
   constructor(private http: Http, private spinnerService: Ng4LoadingSpinnerService) {
     this.reset();
@@ -17,9 +19,11 @@ export class FlightFareService {
   reset() {
     this.airports = [];
     this.flightFare = undefined;
+    this.errorMessage = undefined;
   }
 
   allAirports(): Array<AirportDetail> {
+    this.errorMessage = undefined;
     let headers = new Headers();
     headers.set('Accept', 'application/json');
 
@@ -34,7 +38,8 @@ export class FlightFareService {
           this.airports = airports;
         },
         err => {
-          console.error('Error when loading', err);
+          this.errorMessage = err;
+          this.errorMessage.title = 'Get all airports service call failed!';
         }
       );
 
@@ -44,6 +49,7 @@ export class FlightFareService {
   findFare(from: string, to: string): void {
     this.spinnerService.show();
     this.flightFare = undefined;
+    this.errorMessage = undefined;
 
     let headers = new Headers();
     headers.set('Accept', 'application/json');
@@ -60,7 +66,8 @@ export class FlightFareService {
           this.spinnerService.hide();
         },
         err => {
-          console.error('Error when loading', err);
+          this.errorMessage = err;
+          this.errorMessage.title = 'Find Fare service call failed!';
           this.spinnerService.hide();
         }
       );
@@ -68,6 +75,10 @@ export class FlightFareService {
   }
 
   find(from: string, to: string): void {
+    this.spinnerService.show();
+    this.flightFare = undefined;
+    this.errorMessage = undefined;
+
     let search = new URLSearchParams();
     search.set('from', from);
     search.set('to', to);
@@ -84,9 +95,12 @@ export class FlightFareService {
       .subscribe(
         flightFare => {
           this.flightFare = flightFare;
+          this.spinnerService.hide();
         },
         err => {
-          console.error('Error when loading', err);
+          this.errorMessage = err;
+          this.errorMessage.title = 'Find Fare service call failed!';
+          this.spinnerService.hide();
         }
       );
 

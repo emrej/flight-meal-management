@@ -46,4 +46,9 @@
       [item]="flightFare">
     </flight-card>
   </div>
+  <div *ngIf="errorMessage" class="col col-lg-8 col-md-8 col-sm-6 col-xs-12">
+    <error-card
+      [item]="errorMessage">
+    </error-card>
+  </div>
 </div>

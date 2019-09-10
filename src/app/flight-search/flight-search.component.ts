@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FlightFare } from '../entities/flight-fare';
 import { FlightFareService } from './flight-fare.service';
 import {AirportDetail} from "../entities/airport-detail";
+import {ErrorMessage} from "../entities/error-message";
 
 @Component({
   selector: 'flight-search',
@@ -20,6 +21,10 @@ export class FlightSearchComponent {
 
   get flightFare(): FlightFare {
     return this.flightService.flightFare;
+  }
+
+  get errorMessage(): ErrorMessage {
+    return this.flightService.errorMessage;
   }
 
   search(): void {
