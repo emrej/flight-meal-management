@@ -7,8 +7,8 @@ describe('starter App', () => {
     page = new StarterPage();
   });
 
-  it('should display message App started', () => {
+  it('should display message Flight Fare Finder', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('App started!');
+    expect(page.getParagraphText()).toEqual('Flight Fare Finder');
   });
 });
