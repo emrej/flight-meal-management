@@ -8,8 +8,8 @@ import {ErrorMessage} from "../entities/error-message";
 @Injectable()
 export class FlightMealService {
 
-  flightFare: FlightFare;
-  airports: AirportDetail[] = [];
+  flight: FlightFare;
+  flights: AirportDetail[] = [];
   errorMessage: ErrorMessage;
 
   constructor(private http: Http, private spinnerService: Ng4LoadingSpinnerService) {
@@ -17,12 +17,12 @@ export class FlightMealService {
   }
 
   reset() {
-    this.airports = [];
-    this.flightFare = undefined;
+    this.flights = [];
+    this.flight = undefined;
     this.errorMessage = undefined;
   }
 
-  allAirports(): Array<AirportDetail> {
+  allFlights(): Array<AirportDetail> {
     this.errorMessage = undefined;
     let headers = new Headers();
     headers.set('Accept', 'application/json');
@@ -34,8 +34,8 @@ export class FlightMealService {
       .get(url, {headers})
       .map(resp => resp.json())
       .subscribe(
-        airports => {
-          this.airports = airports;
+        flights => {
+          this.flights = flights;
         },
         err => {
           this.errorMessage = err;
@@ -43,12 +43,12 @@ export class FlightMealService {
         }
       );
 
-    return this.airports;
+    return this.flights;
   }
 
   findFare(from: string, to: string): void {
     this.spinnerService.show();
-    this.flightFare = undefined;
+    this.flight = undefined;
     this.errorMessage = undefined;
 
     let headers = new Headers();
@@ -62,7 +62,7 @@ export class FlightMealService {
       .map(resp => resp.json())
       .subscribe(
         flightFare => {
-          this.flightFare = flightFare;
+          this.flight = flightFare;
           this.spinnerService.hide();
         },
         err => {
@@ -76,7 +76,7 @@ export class FlightMealService {
 
   find(from: string, to: string): void {
     this.spinnerService.show();
-    this.flightFare = undefined;
+    this.flight = undefined;
     this.errorMessage = undefined;
 
     let search = new URLSearchParams();
@@ -93,8 +93,8 @@ export class FlightMealService {
       .get(url, {search, headers})
       .map(resp => resp.json())
       .subscribe(
-        flightFare => {
-          this.flightFare = flightFare;
+        flight => {
+          this.flight = flight;
           this.spinnerService.hide();
         },
         err => {
@@ -106,4 +106,7 @@ export class FlightMealService {
 
   }
 
+  addFlight(flightNumber: string, flightDepartureDate: Date) {
+
+  }
 }

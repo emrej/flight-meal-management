@@ -1,30 +1,24 @@
 
 <div class="card row">
-  <h1>Flight Fare Finder</h1>
+  <h1>Flight Meal Management</h1>
 
   <div class="control-group">
-    <label>From:</label>
-    <input [(ngModel)]="from" (keyup)="searchInputKeyUp($event)" class="form-control" id="from">
+    <label>Flight Number:</label>
+    <input [(ngModel)]="flightNumber" minlength="5" maxlength="6" #fNumber="ngModel" class="form-control"
+           id="flightNumber" (keydown.space)="$event.preventDefault();">
   </div>
-  <ul *ngIf="filterToggleFrom" class="list-group">
-    <li (click)="fillTexBox(airport, $event)" *ngFor="let airport of airports | filter : from" class="list-group-item" id="fromItem">
-      {{airport.code}} | {{airport.name}} | {{airport.description}}
-    </li>
-  </ul>
+  <div *ngIf="fNumber.errors?.minlength">
+    Flight number must be at least 5 characters long.
+  </div>
 
   <span>
     &nbsp;
   </span>
 
   <div class="control-group">
-    <label>To:</label>
-    <input [(ngModel)]="to" (keyup)="searchInputKeyUp($event)" class="form-control" id="to">
+    <label>Flight Departure Date:</label>
+    <input type="date" [(ngModel)]="flightDepartureDate" class="form-control" id="flightDepartureDate">
   </div>
-  <ul *ngIf="filterToggleTo" class="list-group">
-    <li (click)="fillTexBox(airport, $event)" *ngFor="let airport of airports | filter : to" class="list-group-item" id="toItem">
-      {{airport.code}} | {{airport.name}} | {{airport.description}}
-    </li>
-  </ul>
 
   <span>
     &nbsp;
@@ -32,18 +26,18 @@
 
   <div class="control-group">
     <button
-      (click)="search()"
-      [disabled]="!from || !to"
+      (click)="addFlight()"
+      [disabled]="(!flightNumber || flightNumber.length < 5) || !flightDepartureDate"
       class="btn btn-default">
-      Search
+      Add Flight
     </button>
   </div>
 </div>
 
 <div class="row">
-  <div *ngIf="flightFare" class="col col-lg-12 col-md-12 col-sm-6 col-xs-12">
+  <div *ngIf="flight" class="col col-lg-12 col-md-12 col-sm-6 col-xs-12">
     <flight-card
-      [item]="flightFare">
+      [item]="flight">
     </flight-card>
   </div>
   <div *ngIf="errorMessage" class="col col-lg-12 col-md-12 col-sm-6 col-xs-12">

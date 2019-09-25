@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { AboutComponent } from "app/about/about.component";
+import { AboutComponent } from "./about/about.component";
 import { FlightManagerComponent } from './flight-manager/flight-manager.component';
 
 export const APP_ROUTES: Routes = [

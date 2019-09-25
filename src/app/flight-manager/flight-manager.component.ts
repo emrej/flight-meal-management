@@ -10,51 +10,31 @@ import {ErrorMessage} from "../entities/error-message";
 })
 export class FlightManagerComponent {
 
-  from: string;
-  to: string;
-  filterToggleFrom: boolean;
-  filterToggleTo: boolean;
+  flightNumber: string;
+  flightDepartureDate: Date;
 
   constructor(private flightService: FlightMealService) {
-    this.retrieveAirports();
+    this.retrieveFlights();
   }
 
-  get flightFare(): FlightFare {
-    return this.flightService.flightFare;
+  get flight(): FlightFare {
+    return this.flightService.flight;
   }
 
   get errorMessage(): ErrorMessage {
     return this.flightService.errorMessage;
   }
 
-  search(): void {
-    this.flightService.findFare(this.from, this.to);
+  addFlight(): void {
+    this.flightService.addFlight(this.flightNumber, this.flightDepartureDate);
   }
 
-  retrieveAirports(): void {
+  retrieveFlights(): void {
     this.flightService.reset();
-    this.flightService.allAirports();
+    this.flightService.allFlights();
   }
 
-  get airports(): Array<AirportDetail> {
-    return this.flightService.airports;
-  }
-
-  fillTexBox(airport: AirportDetail, event: MouseEvent) {
-    if (event.srcElement.id == 'fromItem') {
-      this.filterToggleFrom = false;
-      this.from = airport.code;
-    } else if (event.srcElement.id == 'toItem') {
-      this.filterToggleTo = false;
-      this.to = airport.code;
-    }
-  }
-
-  searchInputKeyUp(event: KeyboardEvent) {
-    if (event.srcElement.id == 'from') {
-      this.filterToggleFrom = true;
-    } else if (event.srcElement.id == 'to') {
-      this.filterToggleTo = true;
-    }
+  get flights(): Array<AirportDetail> {
+    return this.flightService.flights;
   }
 }
