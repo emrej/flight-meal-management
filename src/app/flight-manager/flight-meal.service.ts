@@ -6,7 +6,7 @@ import {Ng4LoadingSpinnerService} from 'ng4-loading-spinner';
 import {ErrorMessage} from "../entities/error-message";
 
 @Injectable()
-export class FlightFareService {
+export class FlightMealService {
 
   flightFare: FlightFare;
   airports: AirportDetail[] = [];

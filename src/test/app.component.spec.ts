@@ -5,17 +5,17 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from "../app/app.component";
-import { FlightSearchComponent } from "../app/flight-search/flight-search.component";
-import { FlightCardComponent } from "../app/flight-search/flight-card.component";
-import { ErrorCardComponent } from '../app/flight-search/error-card.component';
+import { FlightManagerComponent } from "../app/flight-manager/flight-manager.component";
+import { FlightCardComponent } from "../app/flight-manager/flight-card.component";
+import { ErrorCardComponent } from '../app/flight-manager/error-card.component';
 import { AboutComponent } from "../app/about/about.component";
 
-import { FilterPipe} from "../app/flight-search/filter.pipe";
+import { FilterPipe} from "../app/flight-manager/filter.pipe";
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 describe('AppComponent', () => {
   const routes: Routes = [
-    { path: 'flight-search', component: FlightSearchComponent },
+    { path: 'flight-manager', component: FlightManagerComponent },
     { path: 'about', component: AboutComponent }
   ];
 
@@ -23,7 +23,7 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        FlightSearchComponent,
+        FlightManagerComponent,
         FlightCardComponent,
         AboutComponent,
         ErrorCardComponent,

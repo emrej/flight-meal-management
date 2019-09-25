@@ -1,16 +1,16 @@
 import { Routes } from '@angular/router';
 import { AboutComponent } from "app/about/about.component";
-import { FlightSearchComponent } from './flight-search/flight-search.component';
+import { FlightManagerComponent } from './flight-manager/flight-manager.component';
 
 export const APP_ROUTES: Routes = [
     {
         path: '',
-        redirectTo: 'flight-search',
+        redirectTo: 'flight-manager',
         pathMatch: 'prefix'
     },
     {
-        path: 'flight-search',
-        component: FlightSearchComponent
+        path: 'flight-manager',
+        component: FlightManagerComponent
     },
     {
         path: 'about',
@@ -18,6 +18,6 @@ export const APP_ROUTES: Routes = [
     },
     {
         path: '**',
-        redirectTo: 'flight-search'
+        redirectTo: 'flight-manager'
     }
-]
+];

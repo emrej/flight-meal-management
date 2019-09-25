@@ -6,11 +6,11 @@ import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { RouterModule } from "@angular/router";
 import { APP_ROUTES } from "app/app.routes";
-import { FlightSearchComponent } from './flight-search/flight-search.component';
-import { FlightFareService } from './flight-search/flight-fare.service';
-import { FlightCardComponent } from './flight-search/flight-card.component';
-import { ErrorCardComponent } from './flight-search/error-card.component';
-import { FilterPipe } from './flight-search/filter.pipe';
+import { FlightManagerComponent } from './flight-manager/flight-manager.component';
+import { FlightMealService } from './flight-manager/flight-meal.service';
+import { FlightCardComponent } from './flight-manager/flight-card.component';
+import { ErrorCardComponent } from './flight-manager/error-card.component';
+import { FilterPipe } from './flight-manager/filter.pipe';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 @NgModule({
@@ -24,13 +24,13 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
   declarations: [
     AppComponent,
     AboutComponent,
-    FlightSearchComponent,
+    FlightManagerComponent,
     FlightCardComponent,
     ErrorCardComponent,
     FilterPipe
   ],
   providers: [
-    FlightFareService
+    FlightMealService
   ],
   bootstrap: [AppComponent]
 })

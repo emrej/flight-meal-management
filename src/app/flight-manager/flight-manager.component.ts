@@ -1,21 +1,21 @@
 import { Component } from '@angular/core';
 import { FlightFare } from '../entities/flight-fare';
-import { FlightFareService } from './flight-fare.service';
+import { FlightMealService } from './flight-meal.service';
 import {AirportDetail} from "../entities/airport-detail";
 import {ErrorMessage} from "../entities/error-message";
 
 @Component({
-  selector: 'flight-search',
-  templateUrl: './flight-search.component.html',
+  selector: 'flight-manager',
+  templateUrl: './flight-manager.component.html',
 })
-export class FlightSearchComponent {
+export class FlightManagerComponent {
 
   from: string;
   to: string;
   filterToggleFrom: boolean;
   filterToggleTo: boolean;
 
-  constructor(private flightService: FlightFareService) {
+  constructor(private flightService: FlightMealService) {
     this.retrieveAirports();
   }
 
