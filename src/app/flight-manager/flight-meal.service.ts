@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {FlightFare} from '../entities/flight-fare';
 import {Http, URLSearchParams, Headers} from '@angular/http';
 import {AirportDetail} from "../entities/airport-detail";
-import {Ng4LoadingSpinnerService} from 'ng4-loading-spinner';
 import {ErrorMessage} from "../entities/error-message";
 
 @Injectable()
@@ -12,7 +11,7 @@ export class FlightMealService {
   flights: AirportDetail[] = [];
   errorMessage: ErrorMessage;
 
-  constructor(private http: Http, private spinnerService: Ng4LoadingSpinnerService) {
+  constructor(private http: Http) {
     this.reset();
   }
 
@@ -47,7 +46,6 @@ export class FlightMealService {
   }
 
   findFare(from: string, to: string): void {
-    this.spinnerService.show();
     this.flight = undefined;
     this.errorMessage = undefined;
 
@@ -63,19 +61,16 @@ export class FlightMealService {
       .subscribe(
         flightFare => {
           this.flight = flightFare;
-          this.spinnerService.hide();
         },
         err => {
           this.errorMessage = err;
           this.errorMessage.title = 'Find Fare service call failed!';
-          this.spinnerService.hide();
         }
       );
 
   }
 
   find(from: string, to: string): void {
-    this.spinnerService.show();
     this.flight = undefined;
     this.errorMessage = undefined;
 
@@ -95,12 +90,10 @@ export class FlightMealService {
       .subscribe(
         flight => {
           this.flight = flight;
-          this.spinnerService.hide();
         },
         err => {
           this.errorMessage = err;
           this.errorMessage.title = 'Find Fare service call failed!';
-          this.spinnerService.hide();
         }
       );
 

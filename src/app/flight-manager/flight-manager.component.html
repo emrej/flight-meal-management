@@ -5,9 +5,9 @@
   <div class="control-group">
     <label>Flight Number:</label>
     <input [(ngModel)]="flightNumber" minlength="5" maxlength="6" #fNumber="ngModel" class="form-control"
-           id="flightNumber" (keydown.space)="$event.preventDefault();">
+           id="flightNumber" (keydown.space)="$event.preventDefault();" style="width: 25%">
   </div>
-  <div *ngIf="fNumber.errors?.minlength">
+  <div *ngIf="fNumber.errors?.minlength" style="font-size: 12px;color: slategray;">
     Flight number must be at least 5 characters long.
   </div>
 
@@ -17,7 +17,8 @@
 
   <div class="control-group">
     <label>Flight Departure Date:</label>
-    <input type="date" [(ngModel)]="flightDepartureDate" class="form-control" id="flightDepartureDate">
+    <input type="date" [(ngModel)]="flightDepartureDate" class="form-control" id="flightDepartureDate"
+           style="width: 25%">
   </div>
 
   <span>

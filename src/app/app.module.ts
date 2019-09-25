@@ -10,24 +10,20 @@ import { FlightManagerComponent } from './flight-manager/flight-manager.componen
 import { FlightMealService } from './flight-manager/flight-meal.service';
 import { FlightCardComponent } from './flight-manager/flight-card.component';
 import { ErrorCardComponent } from './flight-manager/error-card.component';
-import { FilterPipe } from './flight-manager/filter.pipe';
-import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(APP_ROUTES),
-    Ng4LoadingSpinnerModule
+    RouterModule.forRoot(APP_ROUTES)
   ],
   declarations: [
     AppComponent,
     AboutComponent,
     FlightManagerComponent,
     FlightCardComponent,
-    ErrorCardComponent,
-    FilterPipe
+    ErrorCardComponent
   ],
   providers: [
     FlightMealService

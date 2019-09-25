@@ -10,9 +10,6 @@ import { FlightCardComponent } from "../app/flight-manager/flight-card.component
 import { ErrorCardComponent } from '../app/flight-manager/error-card.component';
 import { AboutComponent } from "../app/about/about.component";
 
-import { FilterPipe} from "../app/flight-manager/filter.pipe";
-import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
-
 describe('AppComponent', () => {
   const routes: Routes = [
     { path: 'flight-manager', component: FlightManagerComponent },
@@ -26,13 +23,11 @@ describe('AppComponent', () => {
         FlightManagerComponent,
         FlightCardComponent,
         AboutComponent,
-        ErrorCardComponent,
-        FilterPipe
+        ErrorCardComponent
       ],
       imports: [
         FormsModule,
-        RouterModule.forRoot(routes),
-        Ng4LoadingSpinnerModule
+        RouterModule.forRoot(routes)
       ],
       providers: [
         { provide: APP_BASE_HREF, useValue: '/'}
