@@ -1,10 +1,11 @@
-<div style="padding:20px;"
+<div style="padding:10px;"
      class="card"
      [ngStyle]="{'background-color': 'lightcyan'}">
 
-  <h2>{{item.originDetail.name}} - {{item.destinationDetail.name}}</h2>
-  <p><b>Amount:</b> {{item.amount}} {{item.currency}}</p>
-  <p><b>From:</b> {{item.originDetail.code}} | {{item.originDetail.name}} | {{item.originDetail.description}}</p>
-  <p><b>To:</b> {{item.destinationDetail.code}} | {{item.destinationDetail.name}} | {{item.destinationDetail.description}}</p>
-
+  <h4>{{item.flightNumber}} - {{item.flightDepartureDate |  date:'dd/MM/yyyy'}}</h4>
+  <div *ngFor="let meal of item.meals">
+    <p><b>Meal Class:</b> {{meal.mealClass}} <b>Breakfast:</b> {{meal.breakfast}} <b>Light Snack:</b> {{meal.lightSnack}}
+      <b>Lunch:</b> {{meal.lunch}}
+      <b>Dinner:</b> {{meal.dinner}}</p>
+  </div>
 </div>

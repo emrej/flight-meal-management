@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { FlightFare } from '../entities/flight-fare';
+import {Component, Input} from '@angular/core';
+import {Flight} from "../entities/flight";
 
 @Component({
   selector: 'flight-card',
@@ -7,6 +7,6 @@ import { FlightFare } from '../entities/flight-fare';
 })
 export class FlightCardComponent {
 
-  @Input() item: FlightFare;
+  @Input() item: Flight;
 
 }

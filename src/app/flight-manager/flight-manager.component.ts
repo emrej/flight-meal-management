@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
-import { FlightFare } from '../entities/flight-fare';
-import { FlightMealService } from './flight-meal.service';
-import {AirportDetail} from "../entities/airport-detail";
+import {Component} from '@angular/core';
+import {FlightMealService} from './flight-meal.service';
+import {Flight} from "../entities/flight";
 import {ErrorMessage} from "../entities/error-message";
 
 @Component({
@@ -17,8 +16,8 @@ export class FlightManagerComponent {
     this.retrieveFlights();
   }
 
-  get flight(): FlightFare {
-    return this.flightService.flight;
+  get flights(): Array<Flight> {
+    return this.flightService.flights;
   }
 
   get errorMessage(): ErrorMessage {
@@ -34,7 +33,4 @@ export class FlightManagerComponent {
     this.flightService.allFlights();
   }
 
-  get flights(): Array<AirportDetail> {
-    return this.flightService.flights;
-  }
 }
