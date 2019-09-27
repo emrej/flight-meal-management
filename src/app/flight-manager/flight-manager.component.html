@@ -1,6 +1,6 @@
 
 <div class="card row">
-  <h1>Flight Meal Management</h1>
+  <h3>Flight Meal Management</h3>
 
   <div class="control-group">
     <label>Flight Number:</label>
@@ -30,14 +30,14 @@
 </div>
 
 <div class="row">
-  <div *ngFor="let flight of flights" class="col col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <flight-card
-      [item]="flight">
-    </flight-card>
-  </div>
   <div *ngIf="errorMessage" class="col col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <error-card
       [item]="errorMessage">
     </error-card>
+  </div>
+  <div *ngFor="let flight of flights" class="col col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <flight-card
+      [item]="flight">
+    </flight-card>
   </div>
 </div>

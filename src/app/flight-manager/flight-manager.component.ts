@@ -25,7 +25,13 @@ export class FlightManagerComponent {
   }
 
   addFlight(): void {
-    this.flightService.addFlight(this.flightNumber, this.flightDepartureDate);
+    const flight: Flight = {
+      flightNumber: this.flightNumber,
+      flightDepartureDate: this.flightDepartureDate,
+      meals: undefined
+    };
+
+    this.flightService.addFlight(flight);
   }
 
   retrieveFlights(): void {
