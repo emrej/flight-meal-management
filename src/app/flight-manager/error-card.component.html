@@ -3,6 +3,9 @@
      [ngStyle]="{'background-color': 'lightyellow'}">
 
   <h3>{{item.title}}</h3>
-  <p>{{(item.status >= 400 && item.status <= 404) ? 'Airport code could not be found..' : 'Something went wrong, please try again..'}}</p>
+  <p>{{(item.status == 404) ? 'Flight could not be found on this date with that flight number' :
+       (item.status == 409) ? 'Flight already exists on this date with that flight number' :
+       (item.status == 400) ? 'Bad request, please check your input parameters' : 'Something went wrong, please try again..'}}
+  </p>
 
 </div>

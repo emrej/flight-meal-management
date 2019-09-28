@@ -62,6 +62,27 @@ export class FlightMealService {
           this.errorMessage.title = 'Add flight service call failed!';
         }
       );
+  }
 
+  addMeal(flightNumber: string, flightDepartureDate: Date, meals: Object) {
+    this.errorMessage = undefined;
+    let headers = new Headers();
+    headers.set('Accept', 'application/json');
+
+    let url = `http://localhost:8080/api/flight/${flightNumber}/${flightDepartureDate}/meals`;
+
+    this
+      .http
+      .post(url, meals, {headers})
+      .map(resp => resp.json())
+      .subscribe(
+        response => {
+          this.allFlights();
+        },
+        err => {
+          this.errorMessage = err;
+          this.errorMessage.title = 'Add meal service call failed!';
+        }
+      );
   }
 }

@@ -14,6 +14,8 @@ export class FlightManagerComponent {
   flightDepartureDate: Date;
   economyMeal: Meal;
   businessMeal: Meal;
+  economyNumberOfMealsValidated: boolean = true;
+  businessNumberOfMealsValidated: boolean = true;
 
   constructor(private flightService: FlightMealService) {
     this.retrieveFlights();
@@ -45,6 +47,22 @@ export class FlightManagerComponent {
   }
 
   addMeal(): void {
+    this.flightService.addMeal(this.flightNumber, this.flightDepartureDate, {
+      meals:
+        [this.economyMeal, this.businessMeal]
+    });
+  }
 
+  validateNumberOfMeal(meal: Meal) {
+    const numberOfMealsValidated = (meal.breakfast >= 0 && meal.breakfast <= 1000) &&
+      (meal.lightSnack >= 0 && meal.lightSnack <= 1000) &&
+      (meal.lunch >= 0 && meal.lunch <= 1000) &&
+      (meal.dinner >= 0 && meal.dinner <= 1000);
+
+    if (meal.mealClass == 'economyClass') {
+      this.economyNumberOfMealsValidated = numberOfMealsValidated;
+    } else {
+      this.businessNumberOfMealsValidated = numberOfMealsValidated;
+    }
   }
 }

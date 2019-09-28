@@ -26,29 +26,58 @@
   <span>&nbsp;</span>
 
   <div class="control-group">
-    <label>Economy Breakfast:</label>
-    <input type="number" [(ngModel)]="economyMeal.breakfast" min="0" max="1000" #nOfMeals="ngModel"
-           class="form-control" id="economyBreakfast" style="width: 10%;display: inline">
+    <label>[Economy] Breakfast:</label>
+    <input type="number" [(ngModel)]="economyMeal.breakfast" min="0" max="1000"
+           (ngModelChange)="validateNumberOfMeal(economyMeal)"
+           class="form-control" id="economyBreakfast" style="width: 10%;display: inline">&nbsp;
     <label>Light Snack:</label>
-    <input type="number" [(ngModel)]="economyMeal.lightSnack" min="0" max="1000" #nOfMeals="ngModel"
-           class="form-control" id="economyLightSnack" style="width: 10%;display: inline">
+    <input type="number" [(ngModel)]="economyMeal.lightSnack" min="0" max="1000"
+           (ngModelChange)="validateNumberOfMeal(economyMeal)"
+           class="form-control" id="economyLightSnack" style="width: 10%;display: inline">&nbsp;
     <label>Lunch:</label>
-    <input type="number" [(ngModel)]="economyMeal.lunch" min="0" max="1000" #nOfMeals="ngModel"
-           class="form-control" id="economyLunch" style="width: 10%;display: inline">
+    <input type="number" [(ngModel)]="economyMeal.lunch" min="0" max="1000"
+           (ngModelChange)="validateNumberOfMeal(economyMeal)"
+           class="form-control" id="economyLunch" style="width: 10%;display: inline">&nbsp;
     <label>Dinner:</label>
-    <input type="number" [(ngModel)]="economyMeal.dinner" min="0" max="1000" #nOfMeals="ngModel"
-           class="form-control" id="economyDinner" style="width: 10%;display: inline">
+    <input type="number" [(ngModel)]="economyMeal.dinner" min="0" max="1000"
+           (ngModelChange)="validateNumberOfMeal(economyMeal)"
+           class="form-control" id="economyDinner" style="width: 10%;display: inline">&nbsp;
 
     <button
       (click)="addMeal()"
-      [disabled]="(!flightNumber || flightNumber.length < 5) || !flightDepartureDate"
+      [disabled]="(!flightNumber || flightNumber.length < 5) || !flightDepartureDate || !economyNumberOfMealsValidated || !businessNumberOfMealsValidated"
       class="btn btn-default">
       Add Meal
     </button>
   </div>
 
-  <div *ngIf="nOfMeals.errors?.max" style="font-size: 12px;color: slategray;padding-top: inherit">
-    You may submit a maximum of 1000
+  <div *ngIf="!economyNumberOfMealsValidated" style="font-size: 12px;color: slategray;padding-top: inherit">
+    Please enter an amount between 0 and 1000
+  </div>
+
+  <span>&nbsp;</span>
+
+  <div class="control-group">
+    <label>[Business] Breakfast:</label>
+    <input type="number" [(ngModel)]="businessMeal.breakfast" min="0" max="1000"
+           (ngModelChange)="validateNumberOfMeal(businessMeal)"
+           class="form-control" id="businessBreakfast" style="width: 10%;display: inline">&nbsp;
+    <label>Light Snack:</label>
+    <input type="number" [(ngModel)]="businessMeal.lightSnack" min="0" max="1000"
+           (ngModelChange)="validateNumberOfMeal(businessMeal)"
+           class="form-control" id="businessLightSnack" style="width: 10%;display: inline">&nbsp;
+    <label>Lunch:</label>
+    <input type="number" [(ngModel)]="businessMeal.lunch" min="0" max="1000"
+           (ngModelChange)="validateNumberOfMeal(businessMeal)"
+           class="form-control" id="businessLunch" style="width: 10%;display: inline">&nbsp;
+    <label>Dinner:</label>
+    <input type="number" [(ngModel)]="businessMeal.dinner" min="0" max="1000"
+           (ngModelChange)="validateNumberOfMeal(businessMeal)"
+           class="form-control" id="businessDinner" style="width: 10%;display: inline">&nbsp;
+  </div>
+
+  <div *ngIf="!businessNumberOfMealsValidated" style="font-size: 12px;color: slategray;padding-top: inherit">
+    Please enter an amount between 0 and 1000
   </div>
 
 </div>
