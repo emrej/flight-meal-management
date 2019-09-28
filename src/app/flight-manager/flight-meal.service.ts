@@ -85,4 +85,26 @@ export class FlightMealService {
         }
       );
   }
+
+  deleteFlight(flightNumber: string, flightDepartureDate: Date) {
+    this.errorMessage = undefined;
+    let headers = new Headers();
+    headers.set('Accept', 'application/json');
+
+    let url = `http://localhost:8080/api/flight/${flightNumber}/${flightDepartureDate}/`;
+
+    this
+      .http
+      .delete(url, {headers})
+      .map(resp => resp.json())
+      .subscribe(
+        response => {
+          this.allFlights();
+        },
+        err => {
+          this.errorMessage = err;
+          this.errorMessage.title = 'Delete flight service call failed!';
+        }
+      );
+  }
 }

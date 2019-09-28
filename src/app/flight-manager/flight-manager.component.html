@@ -17,6 +17,13 @@
       class="btn btn-default">
       Add Flight
     </button>
+    &nbsp;&nbsp;
+    <button
+      (click)="deleteFlight()"
+      [disabled]="(!flightNumber || flightNumber.length < 5) || !flightDepartureDate"
+      class="btn btn-default">
+      Delete Flight
+    </button>
   </div>
 
   <div *ngIf="fNumber.errors?.minlength" style="font-size: 12px;color: slategray;padding-top: inherit">

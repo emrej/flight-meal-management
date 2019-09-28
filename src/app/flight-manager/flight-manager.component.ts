@@ -75,4 +75,8 @@ export class FlightManagerComponent {
     this.flightDepartureDate = flight.flightDepartureDate;
     this.resetMeals();
   }
+
+  deleteFlight() {
+    this.flightService.deleteFlight(this.flightNumber, this.flightDepartureDate);
+  }
 }
