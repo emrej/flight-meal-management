@@ -19,6 +19,10 @@ export class FlightManagerComponent {
 
   constructor(private flightService: FlightMealService) {
     this.retrieveFlights();
+    this.resetMeals();
+  }
+
+  resetMeals() : void {
     this.economyMeal = {breakfast: 0, dinner: 0, lightSnack: 0, lunch: 0, mealClass: "economyClass"};
     this.businessMeal = {breakfast: 0, dinner: 0, lightSnack: 0, lunch: 0, mealClass: "businessClass"};
   }
@@ -64,5 +68,11 @@ export class FlightManagerComponent {
     } else {
       this.businessNumberOfMealsValidated = numberOfMealsValidated;
     }
+  }
+
+  fillInFlightInfo(flight: Flight) {
+    this.flightNumber = flight.flightNumber;
+    this.flightDepartureDate = flight.flightDepartureDate;
+    this.resetMeals();
   }
 }
