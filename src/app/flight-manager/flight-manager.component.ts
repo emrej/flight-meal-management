@@ -73,6 +73,7 @@ export class FlightManagerComponent {
   fillInFlightInfo(flight: Flight) {
     this.flightNumber = flight.flightNumber;
     this.flightDepartureDate = flight.flightDepartureDate;
+    this.retrieveFlights();
     this.resetMeals();
   }
 
