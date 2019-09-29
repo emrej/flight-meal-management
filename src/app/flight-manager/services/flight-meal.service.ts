@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Headers, Http} from '@angular/http';
-import {Flight} from "../entities/flight";
-import {environment} from "../../environments/environment";
+import {Flight} from "../models/flight";
+import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs";
 
 @Injectable()

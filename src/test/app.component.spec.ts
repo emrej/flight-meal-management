@@ -5,9 +5,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from "../app/app.component";
-import { FlightManagerComponent } from "../app/flight-manager/flight-manager.component";
-import { FlightCardComponent } from "../app/flight-manager/flight-card.component";
-import { ErrorCardComponent } from '../app/flight-manager/error-card.component';
+import { FlightManagerComponent } from "../app/flight-manager/components/flight-manager/flight-manager.component";
+import { FlightCardComponent } from "../app/flight-manager/components/flight-card/flight-card.component";
+import { ErrorCardComponent } from '../app/flight-manager/components/error-card/error-card.component';
 import { AboutComponent } from "../app/about/about.component";
 
 describe('AppComponent', () => {

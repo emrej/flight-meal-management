@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Flight} from "../entities/flight";
+import {Flight} from "../../models/flight";
 
 @Component({
   selector: 'flight-card',

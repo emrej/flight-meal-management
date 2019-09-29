@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { AboutComponent } from "./about/about.component";
-import { FlightManagerComponent } from './flight-manager/flight-manager.component';
+import { FlightManagerComponent } from './flight-manager/components/flight-manager/flight-manager.component';
 
 export const APP_ROUTES: Routes = [
     {

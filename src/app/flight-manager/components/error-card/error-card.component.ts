@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ErrorMessage } from '../entities/error-message';
+import { ErrorMessage } from '../../models/error-message';
 
 @Component({
   selector: 'error-card',

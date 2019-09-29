@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FlightMealService} from './flight-meal.service';
-import {Flight} from "../entities/flight";
-import {ErrorMessage} from "../entities/error-message";
-import {Meal} from "../entities/meal";
+import {FlightMealService} from '../../services/flight-meal.service';
+import {Flight} from "../../models/flight";
+import {ErrorMessage} from "../../models/error-message";
+import {Meal} from "../../models/meal";
 
 @Component({
   selector: 'flight-manager',
