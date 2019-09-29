@@ -1,110 +1,67 @@
 import {Injectable} from '@angular/core';
-import {Headers, Http, URLSearchParams} from '@angular/http';
+import {Headers, Http} from '@angular/http';
 import {Flight} from "../entities/flight";
-import {ErrorMessage} from "../entities/error-message";
+import {environment} from "../../environments/environment";
+import {Observable} from "rxjs";
 
 @Injectable()
 export class FlightMealService {
 
-  flights: Flight[] = [];
-  errorMessage: ErrorMessage;
-
   constructor(private http: Http) {
-    this.reset();
   }
 
-  reset() {
-    this.flights = [];
-    this.errorMessage = undefined;
-  }
-
-  allFlights(): Array<Flight> {
-    this.errorMessage = undefined;
+  allFlights(): Observable<any> {
     let headers = new Headers();
     headers.set('Accept', 'application/json');
 
-    let url = 'http://localhost:8080/api/flight/';
+    let url = `${environment.api}/flight/`;
 
-    this
+    return this
       .http
       .get(url, {headers})
-      .map(resp => resp.json())
-      .subscribe(
-        flights => {
-          this.flights = flights;
-        },
-        err => {
-          this.errorMessage = err;
-          this.errorMessage.title = 'Get all flights service call failed!';
-        }
-      );
-
-    return this.flights;
+      .map(resp => resp.json());
   }
 
   addFlight(flight: Flight) {
-    this.errorMessage = undefined;
     let headers = new Headers();
     headers.set('Accept', 'application/json');
 
-    let url = 'http://localhost:8080/api/flight/';
+    let url = `${environment.api}/flight/`;
 
-    this
+    return this
       .http
       .post(url, flight, {headers})
-      .map(resp => resp.json())
-      .subscribe(
-        response => {
-          this.allFlights();
-        },
-        err => {
-          this.errorMessage = err;
-          this.errorMessage.title = 'Add flight service call failed!';
-        }
-      );
+      .map(resp => resp.json());
   }
 
+  /**
+   * Save the meals inside the database
+   *
+   * @param flightNumber The flight number
+   * @param flightDepartureDate Date of the departure
+   * @param meals Array of meals
+   */
   addMeal(flightNumber: string, flightDepartureDate: Date, meals: Object) {
-    this.errorMessage = undefined;
     let headers = new Headers();
     headers.set('Accept', 'application/json');
 
-    let url = `http://localhost:8080/api/flight/${flightNumber}/${flightDepartureDate}/meals`;
+    let url = `${environment.api}/flight/${flightNumber}/${flightDepartureDate}/meals`;
 
-    this
+    return this
       .http
       .post(url, meals, {headers})
-      .map(resp => resp.json())
-      .subscribe(
-        response => {
-          this.allFlights();
-        },
-        err => {
-          this.errorMessage = err;
-          this.errorMessage.title = 'Add meal service call failed!';
-        }
-      );
+      .map(resp => resp.json());
   }
 
   deleteFlight(flightNumber: string, flightDepartureDate: Date) {
-    this.errorMessage = undefined;
     let headers = new Headers();
     headers.set('Accept', 'application/json');
 
-    let url = `http://localhost:8080/api/flight/${flightNumber}/${flightDepartureDate}/`;
+    let url = `${environment.api}/flight/${flightNumber}/${flightDepartureDate}/`;
 
-    this
+    return this
       .http
       .delete(url, {headers})
-      .map(resp => resp.json())
-      .subscribe(
-        response => {
-          this.allFlights();
-        },
-        err => {
-          this.errorMessage = err;
-          this.errorMessage.title = 'Delete flight service call failed!';
-        }
-      );
+      .map(resp => resp.json());
   }
 }

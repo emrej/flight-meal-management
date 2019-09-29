@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FlightMealService} from './flight-meal.service';
 import {Flight} from "../entities/flight";
 import {ErrorMessage} from "../entities/error-message";
@@ -8,8 +8,10 @@ import {Meal} from "../entities/meal";
   selector: 'flight-manager',
   templateUrl: './flight-manager.component.html',
 })
-export class FlightManagerComponent {
+export class FlightManagerComponent implements OnInit {
 
+  flights: Array<Flight>;
+  errorMessage: ErrorMessage;
   flightNumber: string;
   flightDepartureDate: Date;
   economyMeal: Meal;
@@ -18,6 +20,9 @@ export class FlightManagerComponent {
   businessNumberOfMealsValidated: boolean = true;
 
   constructor(private flightService: FlightMealService) {
+  }
+
+  ngOnInit() {
     this.retrieveFlights();
     this.resetMeals();
   }
@@ -27,34 +32,69 @@ export class FlightManagerComponent {
     this.businessMeal = {breakfast: 0, dinner: 0, lightSnack: 0, lunch: 0, mealClass: "businessClass"};
   }
 
-  get flights(): Array<Flight> {
-    return this.flightService.flights;
-  }
-
-  get errorMessage(): ErrorMessage {
-    return this.flightService.errorMessage;
-  }
-
   addFlight(): void {
     const flight: Flight = {
       flightNumber: this.flightNumber,
       flightDepartureDate: this.flightDepartureDate,
       meals: undefined
     };
+    this.errorMessage = undefined;
 
-    this.flightService.addFlight(flight);
+    this.flightService.addFlight(flight)
+      .subscribe(
+      response => {
+        this.retrieveFlights();
+      },
+      err => {
+        this.errorMessage = err;
+        this.errorMessage.title = 'Add flight service call failed!';
+      }
+    );
   }
 
   retrieveFlights(): void {
-    this.flightService.reset();
-    this.flightService.allFlights();
+    this.flights = [];
+    this.errorMessage = undefined;
+    this.flightService.allFlights()
+      .subscribe(
+        flights => {
+          this.flights = flights;
+        },
+        err => {
+          this.errorMessage = err;
+          this.errorMessage.title = 'Get all flights service call failed!';
+        }
+      );;
   }
 
   addMeal(): void {
+    this.errorMessage = undefined;
     this.flightService.addMeal(this.flightNumber, this.flightDepartureDate, {
       meals:
         [this.economyMeal, this.businessMeal]
-    });
+    }).subscribe(
+        response => {
+          this.retrieveFlights();
+        },
+        err => {
+          this.errorMessage = err;
+          this.errorMessage.title = 'Add meal service call failed!';
+        }
+      );
+  }
+
+  deleteFlight() {
+    this.errorMessage = undefined;
+    this.flightService.deleteFlight(this.flightNumber, this.flightDepartureDate)
+      .subscribe(
+        response => {
+          this.retrieveFlights();
+        },
+        err => {
+          this.errorMessage = err;
+          this.errorMessage.title = 'Delete flight service call failed!';
+        }
+      );;
   }
 
   validateNumberOfMeal(meal: Meal) {
@@ -77,7 +117,4 @@ export class FlightManagerComponent {
     this.resetMeals();
   }
 
-  deleteFlight() {
-    this.flightService.deleteFlight(this.flightNumber, this.flightDepartureDate);
-  }
 }
