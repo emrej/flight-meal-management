@@ -1,11 +1,15 @@
-<div style="padding:20px;"
-     class="card"
-     [ngStyle]="{'background-color': 'lightyellow'}">
-
-  <h3>{{item.title}}</h3>
-  <p>{{(item.status == 404) ? 'Flight could not be found on this date with that flight number' :
-       (item.status == 409) ? 'Flight already exists on this date with that flight number' :
-       (item.status == 400) ? 'Bad request, please check your input parameters' : 'Something went wrong, please try again..'}}
+<div class="card" style="padding:5px;background-color: lightyellow">
+  <h3>{{ item.title }}</h3>
+  <p *ngIf="item.status == 404">
+    Flight could not be found on this date with that flight number
   </p>
-
+  <p *ngIf="item.status == 409">
+    Flight already exists on this date with that flight number
+  </p>
+  <p *ngIf="item.status == 400">
+    Bad request, please check your input parameters
+  </p>
+  <p *ngIf="item.status !== 400 && item.status !== 404 && item.status !== 409">
+    Something went wrong, please try again..
+  </p>
 </div>

@@ -38,7 +38,6 @@ export class FlightManagerComponent implements OnInit {
       flightDepartureDate: this.flightDepartureDate,
       meals: undefined
     };
-    this.errorMessage = undefined;
 
     this.flightService.addFlight(flight)
       .subscribe(
@@ -68,7 +67,6 @@ export class FlightManagerComponent implements OnInit {
   }
 
   addMeal(): void {
-    this.errorMessage = undefined;
     this.flightService.addMeal(this.flightNumber, this.flightDepartureDate, {
       meals:
         [this.economyMeal, this.businessMeal]
@@ -84,7 +82,6 @@ export class FlightManagerComponent implements OnInit {
   }
 
   deleteFlight() {
-    this.errorMessage = undefined;
     this.flightService.deleteFlight(this.flightNumber, this.flightDepartureDate)
       .subscribe(
         response => {
@@ -97,6 +94,11 @@ export class FlightManagerComponent implements OnInit {
       );;
   }
 
+  /**
+   * Validates the number of meal amounts for meal types of economy and business class
+   *
+   * @param meal Meal
+   */
   validateNumberOfMeal(meal: Meal) {
     const numberOfMealsValidated = (meal.breakfast >= 0 && meal.breakfast <= 1000) &&
       (meal.lightSnack >= 0 && meal.lightSnack <= 1000) &&
@@ -110,6 +112,11 @@ export class FlightManagerComponent implements OnInit {
     }
   }
 
+  /**
+   * Sets the flight number and departure date of the selected (clicked) flight into input boxes
+   *
+   * @param flight Flight
+   */
   fillInFlightInfo(flight: Flight) {
     this.flightNumber = flight.flightNumber;
     this.flightDepartureDate = flight.flightDepartureDate;
